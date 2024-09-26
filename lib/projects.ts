@@ -1,8 +1,9 @@
 import { Project } from "@/types/project";
-import { projects } from "@/lib/data";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export const getProjectImage = (project: Project) => {
-  let image = project.entries.find((entry) => entry.image)?.image;
+  let image = project.entries?.find((entry) => entry.image)?.image;
 
   if (!image) {
     image = "https://via.placeholder.com/300";
@@ -11,10 +12,18 @@ export const getProjectImage = (project: Project) => {
   return image;
 };
 
-export const getProjects = () => {
+export const getProjects = async () => {
+  const projects = (await prisma.project.findMany()) as Project[];
+
   return projects;
 };
 
-export const getProject = (slug: string) => {
-  return projects.find((project) => project.slug === slug);
+export const getProject = async (slug: string) => {
+  const project = await prisma.project.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+
+  return project ? (project as Project) : undefined;
 };

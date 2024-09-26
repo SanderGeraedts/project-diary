@@ -5,11 +5,11 @@ export interface ProjectInput {
 export interface Project extends ProjectInput {
   id: string;
   slug: string;
-  entries: Entry[];
+  entries?: Entry[];
 }
 
 export interface EntryInput {
-  date: string;
+  createdAt: Date;
   text?: string;
   image?: string;
   status?: string;
