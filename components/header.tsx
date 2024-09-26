@@ -1,7 +1,13 @@
 import Wrapper from "@/components/wrapper";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({
+  label,
+  href,
+}: {
+  label: string;
+  href: string;
+}) {
   return (
     <header className="w-full bg-white py-4 shadow-md">
       <Wrapper>
@@ -12,10 +18,10 @@ export default function Header() {
             </h1>
           </Link>
           <Link
-            href="/project/new"
+            href={href}
             className="bg-highlight rounded-xl px-4 py-1 text-white font-semibold shadow-md"
           >
-            Add Project
+            {label}
           </Link>
         </div>
       </Wrapper>

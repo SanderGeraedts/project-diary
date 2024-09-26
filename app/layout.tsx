@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-100">
-        <Header />
+        <Header label="Add Project" href="/project/new" />
         <div className="my-4">{children}</div>
       </body>
     </html>
