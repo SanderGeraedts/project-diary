@@ -2,11 +2,11 @@
 
 import Wrapper from "@/components/wrapper";
 import { createProject } from "@/lib/actions";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
+import SubmitButton from "@/components/submit-button";
 
 export default function NewProject() {
   const [state, formAction] = useFormState(createProject, { message: "" });
-  const { pending } = useFormStatus();
 
   return (
     <Wrapper>
@@ -19,7 +19,7 @@ export default function NewProject() {
         {state.message && (
           <div className="bg-red-400 rounded p-3">{state.message}</div>
         )}
-        <button>{pending ? "Submitting..." : "Add Project"}</button>
+        <SubmitButton>Add Project</SubmitButton>
       </form>
     </Wrapper>
   );
